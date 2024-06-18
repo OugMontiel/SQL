@@ -25,3 +25,7 @@ console.log(await getNameAndEmailFromEmployeesRespondenA_2_2({ codeEmployee: 114
 console.log(await getAllOrderForCustomerFromCity_2_3({ country: "France" }));
 console.log(await getTotalPayForCustomer_2_4());
 console.log(await getDetalleOrderForOrderByCustomer_2_5({ codeCustomer: 103 }));
+
+//////////////
+// Part Two //
+//////////////
