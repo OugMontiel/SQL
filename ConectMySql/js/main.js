@@ -2,7 +2,7 @@
 //////////////
 // Part One //
 //////////////
-import{
+import {
     getAllProducsDescription_1_1,
     getAllEmployeesFromOfficeCode_1_2,
     getAllOrdederStatusShipped_1_3,
@@ -14,6 +14,18 @@ import{
     getTotalPayForCustomer_2_4,
     getDetalleOrderForOrderByCustomer_2_5
 } from "./module/partOne.js";
+import {
+    getAvgCreditLimit_3_1,
+    getAllStock_3_2,
+    getAvgBuyPriceForProducts_3_3,
+    getCountNumberOfficesInCountry_3_4,
+    getTotalPaymentsReceived_3_5,
+    getTotalNumberEmployees_3_6,
+    getAvgQuantityProductsInOrdersDetails_3_7,
+    getBuyPriceOfAllProducts_3_8,
+    getAvgSuggestedPriceOfProducts_3_9,
+    getNumberOfEmployeesByJobTitle_3_10
+} from "./module/partTwo.js";
 
 console.log(await getAllProducsDescription_1_1());
 console.log(await getAllEmployeesFromOfficeCode_1_2({ officeCode: 1 }));
@@ -29,3 +41,16 @@ console.log(await getDetalleOrderForOrderByCustomer_2_5({ codeCustomer: 103 }));
 //////////////
 // Part Two //
 //////////////
+
+
+
+console.log(await getAvgCreditLimit_3_1());
+console.log(await getAllStock_3_2());
+console.log(await getAvgBuyPriceForProducts_3_3());
+console.log(await getCountNumberOfficesInCountry_3_4());
+console.log(await getTotalPaymentsReceived_3_5());
+console.log(await getTotalNumberEmployees_3_6());
+console.log(await getAvgQuantityProductsInOrdersDetails_3_7());
+console.log(await getBuyPriceOfAllProducts_3_8());
+console.log(await getAvgSuggestedPriceOfProducts_3_9());
+console.log(await getNumberOfEmployeesByJobTitle_3_10());

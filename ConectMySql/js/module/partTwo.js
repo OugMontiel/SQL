@@ -6,7 +6,7 @@ import { connection } from "../../db/connection.js";
 
 
 // 1. Obtener el promedio del límite de crédito de todos los clientes:
-export const get_3_1 = async () => {
+export const getAvgCreditLimit_3_1 = async () => {
     let [result] = await connection.query(
         ` SELECT AVG(creditLimit) FROM customers `
     );
@@ -14,7 +14,7 @@ export const get_3_1 = async () => {
 }
 
 // 2. Calcular el total de productos en stock:
-export const get_3_2 = async () => {
+export const getAllStock_3_2 = async () => {
     let [result] = await connection.query(
         ` SELECT productName, quantityInStock FROM products UNION ALL SELECT 'total de productos en stock', SUM(quantityInStock) FROM products `
     );
@@ -22,7 +22,7 @@ export const get_3_2 = async () => {
 }
 
 // 3. Encontrar el precio medio de compra de todos los productos:
-export const get_3_3 = async () => {
+export const getAvgBuyPriceForProducts_3_3 = async () => {
     let [result] = await connection.query(
         ` SELECT AVG(buyPrice) FROM products `
     );
@@ -30,7 +30,7 @@ export const get_3_3 = async () => {
 }
 
 // 4. Contar la cantidad de oficinas en cada país:
-export const get_3_4 = async () => {
+export const getCountNumberOfficesInCountry_3_4 = async () => {
     let [result] = await connection.query(
         ` SELECT country, COUNT(officeCode) FROM offices GROUP BY country `
     );
@@ -38,7 +38,7 @@ export const get_3_4 = async () => {
 }
 
 // 5. Calcular el total de pagos recibidos:
-export const get_3_5 = async () => {
+export const getTotalPaymentsReceived_3_5 = async () => {
     let [result] = await connection.query(
         ` SELECT SUM(amount) FROM payments `
     );
@@ -46,7 +46,7 @@ export const get_3_5 = async () => {
 }
 
 // 6. Obtener la cantidad total de empleados:
-export const get_3_6 = async () => {
+export const getTotalNumberEmployees_3_6 = async () => {
     let [result] = await connection.query(
         ` SELECT COUNT(employeeNumber) FROM employees `
     );
@@ -54,7 +54,7 @@ export const get_3_6 = async () => {
 }
 
 // 7. Calcular la cantidad media de productos pedidos en las órdenes:
-export const get_3_7 = async () => {
+export const getAvgQuantityProductsInOrdersDetails_3_7 = async () => {
     let [result] = await connection.query(
         ` SELECT AVG(quantityOrdered) FROM orderdetails `
     );
@@ -62,7 +62,7 @@ export const get_3_7 = async () => {
 }
 
 // 8. Encontrar el precio total de todos los productos:
-export const get_3_8 = async () => {
+export const getBuyPriceOfAllProducts_3_8 = async () => {
     let [result] = await connection.query(
         ` SELECT SUM(buyPrice) FROM products `
     );
@@ -70,7 +70,7 @@ export const get_3_8 = async () => {
 }
 
 // 9. Calcular el promedio del precio sugerido (MSRP) de los productos:
-export const get_3_9 = async () => {
+export const getAvgSuggestedPriceOfProducts_3_9 = async () => {
     let [result] = await connection.query(
         ` SELECT AVG(MSRP) FROM products `
     );
@@ -78,7 +78,7 @@ export const get_3_9 = async () => {
 }
 
 // 10. Contar la cantidad de empleados por título de trabajo:
-export const get_3_10 = async () => {
+export const getNumberOfEmployeesByJobTitle_3_10 = async () => {
     let [result] = await connection.query(
         ` SELECT jobTitle, COUNT(employeeNumber) FROM employees GROUP BY jobTitle `
     );
