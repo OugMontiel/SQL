@@ -2,6 +2,10 @@
 
 1. Devuelve un listado con todos los pedidos que se han realizado. Los pedidos deben estar ordenados por la fecha de realización, mostrando en primer lugar los pedidos más recientes.
 
+   ```sql
+   SELECT * FROM pedido ORDER BY fecha DESC;
+   ```
+
 2. Devuelve todos los datos de los dos pedidos de mayor valor.
 
    ```sql
@@ -11,8 +15,15 @@
 
 3. Devuelve un listado con los identificadores de los clientes que han realizado algún pedido. Tenga en cuenta que no debe mostrar identificadores que estén repetidos.
 
-4. Devuelve un listado de todos los pedidos que se realizaron durante el año 2017, cuya cantidad total sea superior a 500€.
+   ```sql
+   SELECT DISTINCT id_cliente FROM pedido; 
+   ```
 
+4. Devuelve un listado de todos los pedidos que se realizaron durante el año 2017, cuya cantidad total sea superior a 500€.
+   
+   ```sql
+   SELECT * FROM pedido WHERE YEAR(fecha)=2017 AND total > 500;
+   ```
 5. Devuelve un listado con el nombre y los apellidos de los comerciales que tienen una comisión entre 0.05 y 0.11.
 
    ```sql
@@ -22,6 +33,8 @@
 
 6. Devuelve el valor de la comisión de mayor valor que existe en la tabla `comercial`.
 
+   ```sql
+   ```
 7. Devuelve el identificador, nombre y primer apellido de aquellos clientes cuyo segundo apellido **no** es `NULL`. El listado deberá estar ordenado alfabéticamente por apellidos y nombre.
 
    ```sql
@@ -44,13 +57,16 @@
    ```
 
 10. Devuelve un listado con los nombres de los comerciales que terminan por `el` o `o`. Tenga en cuenta que se deberán eliminar los nombres repetidos.
+   ```sql
+   ```
 
 ### 2. Consultas multitabla (Composición interna)
 
 Resuelva todas las consultas utilizando la sintaxis de `SQL1` y `SQL2`.
 
 1. Devuelve un listado con el identificador, nombre y los apellidos de todos los clientes que han realizado algún pedido. El listado debe estar ordenado alfabéticamente y se deben eliminar los elementos repetidos.
-
+   ```sql
+   ```
 2. Devuelve un listado que muestre todos los pedidos que ha realizado cada cliente. El resultado debe mostrar todos los datos de los pedidos y del cliente. El listado debe mostrar los datos de los clientes ordenados alfabéticamente.
 
    ```sql
@@ -86,13 +102,15 @@ Resuelva todas las consultas utilizando la sintaxis de `SQL1` y `SQL2`.
    ```
 
 7. Devuelve el nombre de todos los clientes que han realizado algún pedido con el comercial `Daniel Sáez Vega`.
-
+   ```sql
+   ```
 ### 3. Consultas multitabla (Composición externa)
 
 Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN`.
 
 1. Devuelve un listado con **todos los clientes** junto con los datos de los pedidos que han realizado. Este listado también debe incluir los clientes que no han realizado ningún pedido. El listado debe estar ordenado alfabéticamente por el primer apellido, segundo apellido y nombre de los clientes.
-
+   ```sql
+   ```
 2. Devuelve un listado con **todos los comerciales** junto con los datos de los pedidos que han realizado. Este listado también debe incluir los comerciales que no han realizado ningún pedido. El listado debe estar ordenado alfabéticamente por el primer apellido, segundo apellido y nombre de los comerciales.
 
    ```sql
@@ -101,7 +119,8 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
    ```
 
 3. Devuelve un listado que solamente muestre los clientes que no han realizado ningún pedido.
-
+   ```sql
+   ```
 4. Devuelve un listado que solamente muestre los comerciales que no han realizado ningún pedido.
 
    ```sql
@@ -118,9 +137,11 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 ### 4. Consultas resumen
 
 1. Calcula la cantidad total que suman todos los pedidos que aparecen en la tabla `pedido`.
-
+   ```sql
+   ```
 2. Calcula la cantidad media de todos los pedidos que aparecen en la tabla `pedido`.
-
+   ```sql
+   ```
 3. Calcula el número total de comerciales distintos que aparecen en la tabla `pedido`.
 
    ```sql
@@ -128,7 +149,8 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
    ```
 
 4. Calcula el número total de clientes que aparecen en la tabla `cliente`.
-
+   ```sql
+   ```
 5. Calcula cuál es la mayor cantidad que aparece en la tabla `pedido`.
 
    ```sql
@@ -209,7 +231,8 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 #### 5. Subconsultas con `IN` y `NOT IN`
 
 1. Devuelve un listado de los clientes que no han realizado ningún pedido. (Utilizando `IN` o `NOT IN`).
-
+   ```sql
+   ```
 2. Devuelve un listado de los comerciales que no han realizado ningún pedido. (Utilizando `IN` o `NOT IN`).
 
    ```sql
