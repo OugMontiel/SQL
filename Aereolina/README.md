@@ -69,16 +69,19 @@ A continuación se suministra una base de datos existente de la agencia la cual 
   1. El administrador selecciona la opción "Registrar Avión" en el menú principal.
   ```sql
    SELECT * FROM statuses;
-   SELECT * FROM manufatures;
-   SELECT * FROM MODE;
+   SELECT * FROM manufacturers;
+   SELECT * FROM models;
    ```
   2. El sistema solicita al administrador ingresar los detalles del avión: matrícula, capacidad, fecha de fabricación, estado, aerolínea, modelo.
-  ```sql
-  INSERT INTO planes (id, plates, capacity, fabricacion_date, id_status. id_model) VALUE (5,'N12345',180,'2010-05-15',1,1)
-   ```
   3. El administrador ingresa los detalles solicitados.
   4. El sistema valida la información ingresada.
+  ```sql
+  select * from planes where plates = "HHL165";
+   ```
   5. El sistema guarda el nuevo avión en la base de datos.
+  ```sql
+  INSERT INTO planes (plates, capacity, fabricacion_date, id_status. id_model) VALUE ('HHL165',5,'2014-05-15',1,9)
+   ```
   6. El sistema confirma el registro exitoso del avión.
 - **Postcondiciones:** El avión es registrado y almacenado en la base de datos.
 - **Excepciones:**
