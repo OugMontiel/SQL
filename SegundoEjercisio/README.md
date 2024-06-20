@@ -34,6 +34,7 @@
 6. Devuelve el valor de la comisión de mayor valor que existe en la tabla `comercial`.
 
    ```sql
+   select max(comision) from comercial;
    ```
 7. Devuelve el identificador, nombre y primer apellido de aquellos clientes cuyo segundo apellido **no** es `NULL`. El listado deberá estar ordenado alfabéticamente por apellidos y nombre.
 
@@ -58,6 +59,7 @@
 
 10. Devuelve un listado con los nombres de los comerciales que terminan por `el` o `o`. Tenga en cuenta que se deberán eliminar los nombres repetidos.
    ```sql
+   select DISTINCT nombre from comercial where nombre like "%el" or nombre like "%o";
    ```
 
 ### 2. Consultas multitabla (Composición interna)
@@ -66,6 +68,7 @@ Resuelva todas las consultas utilizando la sintaxis de `SQL1` y `SQL2`.
 
 1. Devuelve un listado con el identificador, nombre y los apellidos de todos los clientes que han realizado algún pedido. El listado debe estar ordenado alfabéticamente y se deben eliminar los elementos repetidos.
    ```sql
+   select DISTINCT id, nombre, concat(apellido1, " ", apellido2) from cliente where id in( select DISTINCT id_cliente from pedido) order by nombre desc;
    ```
 2. Devuelve un listado que muestre todos los pedidos que ha realizado cada cliente. El resultado debe mostrar todos los datos de los pedidos y del cliente. El listado debe mostrar los datos de los clientes ordenados alfabéticamente.
 
@@ -84,6 +87,7 @@ Resuelva todas las consultas utilizando la sintaxis de `SQL1` y `SQL2`.
 4. Devuelve un listado que muestre todos los clientes, con todos los pedidos que han realizado y con los datos de los comerciales asociados a cada pedido.
 
    ```sql
+   select c.id as cliente, p.id as pedido, co.id as comercial from cliente c join pedido p on c.id=p.id_cliente join comercial co on co.id=p.id_comercial order by cliente , pedido; 
    # Gabriel
    ```
 
@@ -103,6 +107,7 @@ Resuelva todas las consultas utilizando la sintaxis de `SQL1` y `SQL2`.
 
 7. Devuelve el nombre de todos los clientes que han realizado algún pedido con el comercial `Daniel Sáez Vega`.
    ```sql
+   select concat(c.nombre, " ", c.apellido1, " ", c.apellido2) as fullNameCliente, concat(co.nombre, " ", co.apellido1, " ", co.apellido2) as FullNamevendedor from cliente as c  join pedido as p on p.id_cliente = c.id join comercial as co on  p.id_comercial = co.id where concat(co.nombre, " ", co.apellido1, " ", co.apellido2) = 'Daniel Sáez vega';
    ```
 ### 3. Consultas multitabla (Composición externa)
 
@@ -110,6 +115,7 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 
 1. Devuelve un listado con **todos los clientes** junto con los datos de los pedidos que han realizado. Este listado también debe incluir los clientes que no han realizado ningún pedido. El listado debe estar ordenado alfabéticamente por el primer apellido, segundo apellido y nombre de los clientes.
    ```sql
+   SELECT c.id as id_Cliente, c.nombre as NombreCliente, p.* from pedido p left join cliente c on c.id=p.id_cliente order by c.apellido1, c.apellido2, c.nombre;
    ```
 2. Devuelve un listado con **todos los comerciales** junto con los datos de los pedidos que han realizado. Este listado también debe incluir los comerciales que no han realizado ningún pedido. El listado debe estar ordenado alfabéticamente por el primer apellido, segundo apellido y nombre de los comerciales.
 
@@ -120,6 +126,7 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 
 3. Devuelve un listado que solamente muestre los clientes que no han realizado ningún pedido.
    ```sql
+   select c.* from pedido p left join cliente c on c.id=p.id_cliente where p.id_cliente is null;
    ```
 4. Devuelve un listado que solamente muestre los comerciales que no han realizado ningún pedido.
 
@@ -131,6 +138,9 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 5. Devuelve un listado con los clientes que no han realizado ningún pedido y de los comerciales que no han participado en ningún pedido. Ordene el listado alfabéticamente por los apellidos y el nombre. En en listado deberá diferenciar de algún modo los clientes y los comerciales.
 
    ```sql
+   Select * from (select "comercial", concat(nombre, " ", apellido1, " ", apellido2) as NombreCompleto from comercial where id not in (select id_comercial from pedido)
+   union 
+   select "cliente", concat(nombre, " ", apellido1, " ", apellido2) as NombreCompleto from cliente where id not in (select id_cliente from pedido ) ) as convinado order by nombreCompleto;
    # German Ramos
    ```
  
@@ -138,9 +148,11 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 
 1. Calcula la cantidad total que suman todos los pedidos que aparecen en la tabla `pedido`.
    ```sql
+   select sum(total) from pedido;
    ```
 2. Calcula la cantidad media de todos los pedidos que aparecen en la tabla `pedido`.
    ```sql
+   select avg(total) from pedido
    ```
 3. Calcula el número total de comerciales distintos que aparecen en la tabla `pedido`.
 
@@ -150,6 +162,7 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 
 4. Calcula el número total de clientes que aparecen en la tabla `cliente`.
    ```sql
+   select count(id) from cliente;
    ```
 5. Calcula cuál es la mayor cantidad que aparece en la tabla `pedido`.
 
@@ -232,6 +245,7 @@ Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN
 
 1. Devuelve un listado de los clientes que no han realizado ningún pedido. (Utilizando `IN` o `NOT IN`).
    ```sql
+   select id from cliente where id not in (select id_cliente from pedido);
    ```
 2. Devuelve un listado de los comerciales que no han realizado ningún pedido. (Utilizando `IN` o `NOT IN`).
 
