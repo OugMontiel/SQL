@@ -98,12 +98,38 @@ A continuación se suministra una base de datos existente de la agencia la cual 
 - **Precondiciones:** El usuario debe tener privilegios de administrador.
 - **Flujo Principal:**
   1. El administrador selecciona la opción "Asignar Tripulación" en el menú principal.
-    
   2. El sistema muestra una lista de trayectos disponibles.
+  
+  ```sql
+  # valido la fecha y valido el estado del avion (1: Activo 7: Operacional 9: Reservado 14: Programado)
+  select * from flight_connections where id_trip in (select id from trips where trip_date > CURDATE()) and id_plane in (select id from planes where id_status in (1, 7, 9, 14.) );
+  ```
+    
   3. El administrador selecciona un trayecto.
   4. El sistema muestra una lista de empleados disponibles.
+
+  ```sql
+  -- Empleado asignado ya al vuelo 
+  select idemployees from tripcrews where idconection = 10;
+  -- empleado asignable rol: (1,2,3,4,5,7,12,13,14)  1. Piloto 2. Copiloto 3. Asistente de Vuelo 4. Jefe de Asistentes de Vuelo 5. Sobrecargo 7. Navegante 12. Tripulación de Cabina 13. Gerente de Cabina 14. Oficial de Seguridad
+  select id from employees where idrol in (1,2,3,4,5,7,12,13,14);
+  -- empleado que se encuentran en el mismo areopuerto
+  select id from employees where idairport in (select id_airport from flight_connections where id = 10);
+  --- lista de asignables 
+  select id, name 
+  from employees 
+  where idrol in (1,2,3,4,5,7,12,13,14) 
+  and idairport in (select id_airport from flight_connections where id = 10) 
+  and id not in (select idemployees from tripcrews where idconection = 10);
+
+  ```
+
   5. El administrador selecciona los empleados a asignar al trayecto.
   6. El sistema guarda la asignación en la base de datos.
+
+  ```sql
+  INSERT INTO tripcrews (idemployees, idconection) VALUE ("flight_connections",10)
+  ```
   7. El sistema confirma la asignación exitosa de la tripulación.
 - **Postcondiciones:** Los empleados seleccionados son asignados al trayecto en la base de datos.
 - **Excepciones:**
@@ -112,6 +138,10 @@ A continuación se suministra una base de datos existente de la agencia la cual 
 
 ## Caso de Uso 3: Crear Reserva de Vuelo
 
+
+  ```sql
+  ```
+  
 **Descripción:** Permite crear una nueva reserva de vuelo para un cliente.
 
 - **Actor Principal:** Agente de Ventas
