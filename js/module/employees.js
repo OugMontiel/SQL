@@ -9,7 +9,7 @@ export const getAllEmployeesFromOfficeCode_1_2 = async ({ officeCode = 1 } = {})
 }
 
 //  2. Obtener los nombres y direcciones de correo electrónico de los empleados que reportan al empleado con el número de empleado 1143:
-export const getNameAndEmailFromEmployeesRespondenA_2_2 = async ({codeEmployee = 1143}={}) => {
+export const getNameAndEmailFromEmployeesRespondenA_2_2 = async ({ codeEmployee = 1143 } = {}) => {
     let [result] = await connection.execute(
         `SELECT lastName, email FROM employees WHERE reportsTo = ?`, [codeEmployee]
     );

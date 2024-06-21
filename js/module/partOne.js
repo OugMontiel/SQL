@@ -54,7 +54,7 @@ export const getAllProducsUnionDescripcionForProductLine_2_1 = async () => {
 }
 
 //  2. Obtener los nombres y direcciones de correo electrónico de los empleados que reportan al empleado con el número de empleado 1143:
-export const getNameAndEmailFromEmployeesRespondenA_2_2 = async ({codeEmployee = 1143}={}) => {
+export const getNameAndEmailFromEmployeesRespondenA_2_2 = async ({ codeEmployee = 1143 } = {}) => {
     let [result] = await connection.execute(
         `SELECT lastName, email FROM employees WHERE reportsTo = ?`, [codeEmployee]
     );
@@ -62,7 +62,7 @@ export const getNameAndEmailFromEmployeesRespondenA_2_2 = async ({codeEmployee =
 }
 
 //  3. Encontrar todas las órdenes realizadas por clientes de 'Francia':
-export const getAllOrderForCustomerFromCity_2_3 = async ({country = "France"}={}) => {
+export const getAllOrderForCustomerFromCity_2_3 = async ({ country = "France" } = {}) => {
     let [result] = await connection.execute(
         `SELECT * FROM orders WHERE customerNumber IN (SELECT customerNumber FROM customers WHERE country = ? )`, [country]
     );
@@ -78,7 +78,7 @@ export const getTotalPayForCustomer_2_4 = async () => {
 }
 
 //  5. Recuperar los detalles de las órdenes, incluyendo los nombres de los productos, para todas las órdenes realizadas por el cliente con el número de cliente 103:
-export const getDetalleOrderForOrderByCustomer_2_5 = async ({codeCustomer=103}={}) => {
+export const getDetalleOrderForOrderByCustomer_2_5 = async ({ codeCustomer = 103 } = {}) => {
     let [result] = await connection.query(
         `SELECT od.orderNumber, p.productName, od.productCode, od.quantityOrdered, od.priceEach FROM orderdetails od JOIN products p ON od.productCode = p.productCode WHERE od.orderNumber IN (SELECT orderNumber FROM orders WHERE customerNumber = ? )`, [codeCustomer]
     );

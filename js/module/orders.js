@@ -10,7 +10,7 @@ export const getAllOrdederStatusShipped_1_3 = async ({ status = "Shipped" } = {}
 
 
 //  3. Encontrar todas las órdenes realizadas por clientes de 'Francia':
-export const getAllOrderForCustomerFromCity_2_3 = async ({country = "France"}={}) => {
+export const getAllOrderForCustomerFromCity_2_3 = async ({ country = "France" } = {}) => {
     let [result] = await connection.execute(
         `SELECT * FROM orders WHERE customerNumber IN (SELECT customerNumber FROM customers WHERE country = ? )`, [country]
     );
@@ -18,7 +18,7 @@ export const getAllOrderForCustomerFromCity_2_3 = async ({country = "France"}={}
 }
 
 //  5. Recuperar los detalles de las órdenes, incluyendo los nombres de los productos, para todas las órdenes realizadas por el cliente con el número de cliente 103:
-export const getDetalleOrderForOrderByCustomer_2_5 = async ({codeCustomer=103}={}) => {
+export const getDetalleOrderForOrderByCustomer_2_5 = async ({ codeCustomer = 103 } = {}) => {
     let [result] = await connection.query(
         `SELECT od.orderNumber, p.productName, od.productCode, od.quantityOrdered, od.priceEach FROM orderdetails od JOIN products p ON od.productCode = p.productCode WHERE od.orderNumber IN (SELECT orderNumber FROM orders WHERE customerNumber = ? )`, [codeCustomer]
     );
