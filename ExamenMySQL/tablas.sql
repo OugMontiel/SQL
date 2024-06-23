@@ -1,3 +1,40 @@
+CREATE TABLE Provincia (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  nombre varchar(50)
+);
+
+CREATE TABLE CodigoPostal (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  codigo varchar(10)
+);
+
+CREATE TABLE Poblacion (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  nombre varchar(50)
+);
+
+CREATE TABLE Direccion (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  direccion varchar(100),
+  idProvincia int,
+  idCodigoPostal int
+);
+
+CREATE TABLE TipoEmpleado (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  tipo_de_empleado varchar(50)
+);
+
+CREATE TABLE TipoDeContrato (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  TipoDeContrato varchar(50)
+);
+
+CREATE TABLE Dias (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  dias varchar(20)
+);
+
 CREATE TABLE Empleados (
   id int PRIMARY KEY AUTO_INCREMENT,
   nombre varchar(50),
@@ -11,49 +48,12 @@ CREATE TABLE Empleados (
   idTipoDeContrato int
 );
 
-CREATE TABLE Direccion (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  direccion varchar(100),
-  idProvincia int,
-  idCodigoPostal int
-);
-
-CREATE TABLE Poblacion (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  nombre varchar(50)
-);
-
-CREATE TABLE Provincia (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  nombre varchar(50)
-);
-
-CREATE TABLE CodigoPostal (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  codigo varchar(10)
-);
-
-CREATE TABLE TipoEmpleado (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  tipo_de_empleado varchar(50)
-);
-
-CREATE TABLE TipoDeContrato (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  TipoDeContrato varchar(50)
-);
-
 CREATE TABLE Horario (
   id int PRIMARY KEY AUTO_INCREMENT,
   idEmpleado int,
   idDia int,
   hora_inicio time,
   hora_fin time
-);
-
-CREATE TABLE Dias (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  dias varchar(20)
 );
 
 CREATE TABLE Reemplazos (
